@@ -5,8 +5,6 @@ buttons.forEach(button => {
   const className = button.classList[1];
   sounds.forEach(sound => {
     const id = sound.id.substring(sound.id.indexOf('_') + 1);
-    if (className === id) {
-      button.addEventListener('click', () => sound.play());
-    }
+    className === id ? button.addEventListener('click', () => sound.play()) : null
   })
 })
