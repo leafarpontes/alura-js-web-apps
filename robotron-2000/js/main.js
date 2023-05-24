@@ -1,11 +1,10 @@
-const subtract = document.querySelector("#subtract");
-const sum = document.querySelector("#sum");
-const arm = document.querySelector("#arm");
-const form = document.querySelector(".montador");
+const control = document.querySelectorAll("[data-control]");
 
-sum.addEventListener("click", (e) => sumOrSubtract("sum"));
-subtract.addEventListener("click", (e) => sumOrSubtract("subtract"))
+control.forEach((control) => {
+  control.addEventListener("click", (evt) => sumOrSubtract(evt.target.dataset.control, evt.target.parentNode));
+})
 
-const sumOrSubtract = (action) => {
-  action === "sum" ? arm.value = parseInt(arm.value) + 1 : arm.value = parseInt(arm.value) - 1;
+const sumOrSubtract = (action, control) => {
+  const part = control.querySelector("[data-counter]");
+  action === "+" ? part.value = parseInt(part.value) + 1 : part.value = parseInt(part.value) - 1;
 }
