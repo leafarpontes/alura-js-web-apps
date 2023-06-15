@@ -37,10 +37,20 @@ const createElement = (itemToAdd) => {
   newItem.appendChild(itemNumber);
   newItem.innerHTML += itemToAdd.name;
   list.appendChild(newItem);
+  newItem.appendChild(deleteButton());
 }
 
 const updateElement = (itemToAdd) => {
   document.querySelector(`[data-id="${itemToAdd.id}"]`).innerHTML = itemToAdd.quantity;
+}
+
+const deleteButton = () => {
+  const buttonElement = document.createElement('button');
+  buttonElement.innerText = "X";
+  buttonElement.addEventListener('click', function() {
+    console.log(this);
+  })
+  return buttonElement;
 }
 
 if (items.length > 0) {
