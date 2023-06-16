@@ -15,9 +15,9 @@ form.addEventListener("submit", (evt) => {
   if (exists) {
     itemToAdd.id = exists.id;
     updateElement(itemToAdd);
-    items[exists.id] = itemToAdd;
+    items[items.findIndex(el => el.id === exists.id)] = itemToAdd;
   } else {
-    itemToAdd.id = items.length;
+    itemToAdd.id = items[items.length - 1] ? (items[items.length - 1]).id + 1 : 0;
     createElement(itemToAdd);
     items.push(itemToAdd);
   }
@@ -37,20 +37,27 @@ const createElement = (itemToAdd) => {
   newItem.appendChild(itemNumber);
   newItem.innerHTML += itemToAdd.name;
   list.appendChild(newItem);
-  newItem.appendChild(deleteButton());
+  newItem.appendChild(deleteButton(itemToAdd.id));
 }
 
 const updateElement = (itemToAdd) => {
   document.querySelector(`[data-id="${itemToAdd.id}"]`).innerHTML = itemToAdd.quantity;
 }
 
-const deleteButton = () => {
+const deleteButton = (id) => {
   const buttonElement = document.createElement('button');
   buttonElement.innerText = "X";
   buttonElement.addEventListener('click', function() {
-    console.log(this);
+    deleteElement(this.parentNode, id);
   })
   return buttonElement;
+}
+
+const deleteElement = (element, id) => {
+  console.log("element", element)
+  element.remove();
+  items.splice(items.findIndex((el) => el.id === id), 1);
+  localStorage.setItem("items", JSON.stringify(items));
 }
 
 if (items.length > 0) {
