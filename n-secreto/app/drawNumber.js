@@ -1,9 +1,12 @@
-const minNumber = 1;
-const maxNumber = 100;
+const minValue = 1;
+const maxValue = 100;
 const secretNumber = generateRandomNumber();
 
 function generateRandomNumber() {
-  return parseInt(Math.random() * 100);
+  return parseInt(Math.random() * maxValue + 1);
 }
 
-console.log(secretNumber)
+const minValueElement = document.getElementById('menor-valor');
+const maxValueElement = document.getElementById('maior-valor');
+minValueElement.innerHTML = minValue;
+maxValueElement.innerHTML = maxValue;
