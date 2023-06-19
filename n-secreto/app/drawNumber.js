@@ -1,6 +1,7 @@
 const minValue = 1;
 const maxValue = 100;
 const secretNumber = generateRandomNumber();
+// console.log(secretNumber);
 
 function generateRandomNumber() {
   return parseInt(Math.random() * maxValue + 1);
