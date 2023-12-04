@@ -23,7 +23,15 @@ async function createVideo(title, desc, url, img) {
   return jsonResponse;
 }
 
+async function searchVideo(searchText) {
+  const response = await fetch(`http://localhost:3000/videos?q=${searchText}`)
+  const jsonResponse = await response.json();
+
+  return jsonResponse;
+}
+
 export const connectApi = {
   getVideos,
-  createVideo
+  createVideo,
+  searchVideo
 }

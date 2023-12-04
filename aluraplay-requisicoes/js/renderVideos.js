@@ -2,7 +2,7 @@ import { connectApi } from "./connectApi.js";
 
 const videosListElement = document.querySelector("[data-videos-list]");
 
-function createVideoCard(title, desc, url, img) {
+export function createVideoCard(title, desc, url, img) {
   const listItem = document.createElement("li");
   listItem.className = "videos__item";
   listItem.innerHTML = `<iframe width="100%" height="72%" src="${url}"
